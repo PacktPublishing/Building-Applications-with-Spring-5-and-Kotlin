@@ -39,6 +39,8 @@ repositories {
 
 
 dependencies {
+	compile 'org.springframework:spring-context:5.0.0.RELEASE'
+    compile 'org.springframework:spring-web:5.0.0.RELEASE'
 	compile('org.springframework.boot:spring-boot-starter')
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
