@@ -27,3 +27,7 @@ nbdist/
 gradlew
 gradlew.bat
 gradle/*
+
+.idea/*
+
+
