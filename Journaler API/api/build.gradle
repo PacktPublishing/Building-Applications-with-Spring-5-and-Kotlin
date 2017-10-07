@@ -1,18 +1,18 @@
 buildscript {
-	ext {
-		kotlinVersion = '1.1.51'
-		springBootVersion = '2.0.0.M4'
-	}
-	repositories {
-		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-	}
+    ext {
+        kotlinVersion = '1.1.51'
+        springBootVersion = '2.0.0.M4'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+    }
 }
 
 apply plugin: 'kotlin'
@@ -25,24 +25,25 @@ group = 'com.journaler'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 compileKotlin {
-	kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "1.8"
 }
 compileTestKotlin {
-	kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 repositories {
-	mavenCentral()
-	maven { url "https://repo.spring.io/snapshot" }
-	maven { url "https://repo.spring.io/milestone" }
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 
 dependencies {
-	compile 'org.springframework:spring-context:5.0.0.RELEASE'
+    compile 'org.springframework:spring-context:5.0.0.RELEASE'
     compile 'org.springframework:spring-web:5.0.0.RELEASE'
-	compile('org.springframework.boot:spring-boot-starter')
-	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
-	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile 'org.springframework:spring-webmvc:5.0.0.RELEASE'
+    compile('org.springframework.boot:spring-boot-starter')
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
+    compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
