@@ -13,7 +13,6 @@ class NoteController {
      * Get notes.
      */
     @GetMapping(
-            value = "/obtain",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun getNotes(): List<Note> {
@@ -36,7 +35,6 @@ class NoteController {
      * It consumes JSON, that is: request body Note.
      */
     @PutMapping(
-            value = "/insert",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
@@ -52,7 +50,7 @@ class NoteController {
      * We introduced path variable for Id to pass.
      */
     @DeleteMapping(
-            value = "/delete/{id}",
+            value = "/{id}",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun deleteNote(@PathVariable(name = "id") id: String): Boolean {
@@ -66,7 +64,6 @@ class NoteController {
      * As result it returns updated Note.
      */
     @PostMapping(
-            value = "/update",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )

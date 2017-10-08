@@ -13,7 +13,6 @@ class TodoController {
      * Get todos.
      */
     @GetMapping(
-            value = "/obtain",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun getTodos(): List<Todo> {
@@ -38,7 +37,6 @@ class TodoController {
      * It consumes JSON, that is: request body Todo.
      */
     @PutMapping(
-            value = "/insert",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
@@ -54,7 +52,7 @@ class TodoController {
      * We introduced path variable for Id to pass.
      */
     @DeleteMapping(
-            value = "/delete/{id}",
+            value = "/{id}",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun deleteTodo(@PathVariable(name = "id") id: String): Boolean {
@@ -68,7 +66,6 @@ class TodoController {
      * As result it returns updated Todo.
      */
     @PostMapping(
-            value = "/update",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
