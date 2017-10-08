@@ -1,79 +1,82 @@
 package com.journaler.api.controller
 
-import com.journaler.api.data.Note
+import com.journaler.api.data.Todo
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
-@RequestMapping("/notes")
-class NoteController {
+@RequestMapping("/todos")
+class TodoController {
 
     /**
-     * Get notes.
+     * Get todos.
      */
     @GetMapping(
             value = "/obtain",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun getNotes(): List<Note> {
+    fun getTodos(): List<Todo> {
         return listOf(
-                Note(
+                Todo(
                         UUID.randomUUID().toString(),
-                        "My first note",
-                        "This is a message for the 1st note."
+                        "My first todo",
+                        "This is a message for the 1st todo.",
+                        System.currentTimeMillis()
                 ),
-                Note(
+                Todo(
                         UUID.randomUUID().toString(),
-                        "My second note",
-                        "This is a message for the 2nd note."
+                        "My second todo",
+                        "This is a message for the 2nd todo.",
+                        System.currentTimeMillis()
                 )
         )
     }
 
     /**
-     * Insert note.
-     * It consumes JSON, that is: request body Note.
+     * Insert item.
+     * It consumes JSON, that is: request body Todo.
      */
     @PutMapping(
             value = "/insert",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun insertNote(
-            @RequestBody note: Note
-    ): Note {
-        note.id = UUID.randomUUID().toString()
-        return note
+    fun insertTodo(
+            @RequestBody todo: Todo
+    ): Todo {
+        todo.id = UUID.randomUUID().toString()
+        return todo
     }
 
     /**
-     * Remove note by Id.
+     * Remove item by Id.
      * We introduced path variable for Id to pass.
      */
     @DeleteMapping(
             value = "/delete/{id}",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun deleteNote(@PathVariable(name = "id") id: String): Boolean {
+    fun deleteTodo(@PathVariable(name = "id") id: String): Boolean {
         println("Removing: $id")
         return true
     }
 
     /**
      * Update item.
-     * It consumes JSON, that is: request body Note.
-     * As result it returns updated Note.
+     * It consumes JSON, that is: request body Todo.
+     * As result it returns updated Todo.
      */
     @PostMapping(
             value = "/update",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun updateNote(@RequestBody note: Note): Note {
-        note.title += " [ updated ]"
-        note.message += " [ updated ]"
-        return note
+    fun updateTodo(@RequestBody todo: Todo): Todo {
+        todo.title += " [ updated ]"
+        todo.message += " [ updated ]"
+        todo.schedule = System.currentTimeMillis()
+        return todo
     }
 
 }
