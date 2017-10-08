@@ -39,12 +39,13 @@ repositories {
 
 
 dependencies {
-    compile 'org.springframework:spring-context:5.0.0.RELEASE'
-    compile 'org.springframework:spring-aop:5.0.0.RELEASE'
-    compile 'org.springframework.boot:spring-boot-actuator:1.5.7.RELEASE'
-    compile 'org.springframework:spring-web:5.0.0.RELEASE'
-    compile 'org.springframework:spring-webmvc:5.0.0.RELEASE'
+    compile 'org.springframework:spring-context'
+    compile 'org.springframework:spring-aop'
     compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile 'org.springframework.boot:spring-boot-actuator'
+    compile 'org.springframework:spring-web'
+    compile 'org.springframework:spring-webmvc'
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
     compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     testCompile('org.springframework.boot:spring-boot-starter-test')
