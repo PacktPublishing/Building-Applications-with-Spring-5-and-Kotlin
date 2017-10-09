@@ -1,13 +1,17 @@
 package com.journaler.api.controller
 
 import com.journaler.api.data.Note
+import com.journaler.api.service.NoteService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 @RequestMapping("/notes")
 class NoteController {
+
+    @Autowired
+    private lateinit var service: NoteService
 
     /**
      * Get notes.
@@ -15,20 +19,7 @@ class NoteController {
     @GetMapping(
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun getNotes(): List<Note> {
-        return listOf(
-                Note(
-                        UUID.randomUUID().toString(),
-                        "My first note",
-                        "This is a message for the 1st note."
-                ),
-                Note(
-                        UUID.randomUUID().toString(),
-                        "My second note",
-                        "This is a message for the 2nd note."
-                )
-        )
-    }
+    fun getNotes() = service.getNotes()
 
     /**
      * Insert note.
@@ -40,10 +31,7 @@ class NoteController {
     )
     fun insertNote(
             @RequestBody note: Note
-    ): Note {
-        note.id = UUID.randomUUID().toString()
-        return note
-    }
+    ) = service.insertNote(note)
 
     /**
      * Remove note by Id.
@@ -53,24 +41,21 @@ class NoteController {
             value = "/{id}",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun deleteNote(@PathVariable(name = "id") id: String): Boolean {
-        println("Removing: $id")
-        return true
-    }
+    fun deleteNote(
+            @PathVariable(name = "id") id: String
+    ): Boolean = service.deleteNote(id)
 
     /**
      * Update item.
      * It consumes JSON, that is: request body Note.
-     * As result it returns updated Note.
+     * As result it returns boolean, True == success.
      */
     @PostMapping(
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun updateNote(@RequestBody note: Note): Note {
-        note.title += " [ updated ]"
-        note.message += " [ updated ]"
-        return note
-    }
+    fun updateNote(
+            @RequestBody note: Note
+    ): Boolean = service.updateNote(note)
 
 }
