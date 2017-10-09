@@ -1,13 +1,17 @@
 package com.journaler.api.controller
 
 import com.journaler.api.data.Todo
+import com.journaler.api.service.TodoService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 @RequestMapping("/todos")
 class TodoController {
+
+    @Autowired
+    private lateinit var service: TodoService
 
     /**
      * Get todos.
@@ -15,22 +19,7 @@ class TodoController {
     @GetMapping(
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun getTodos(): List<Todo> {
-        return listOf(
-                Todo(
-                        UUID.randomUUID().toString(),
-                        "My first todo",
-                        "This is a message for the 1st todo.",
-                        System.currentTimeMillis()
-                ),
-                Todo(
-                        UUID.randomUUID().toString(),
-                        "My second todo",
-                        "This is a message for the 2nd todo.",
-                        System.currentTimeMillis()
-                )
-        )
-    }
+    fun getTodos(): List<Todo> = service.getTodos()
 
     /**
      * Insert item.
@@ -42,10 +31,7 @@ class TodoController {
     )
     fun insertTodo(
             @RequestBody todo: Todo
-    ): Todo {
-        todo.id = UUID.randomUUID().toString()
-        return todo
-    }
+    ): Todo = service.insertTodo(todo)
 
     /**
      * Remove item by Id.
@@ -55,25 +41,19 @@ class TodoController {
             value = "/{id}",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun deleteTodo(@PathVariable(name = "id") id: String): Boolean {
-        println("Removing: $id")
-        return true
-    }
+    fun deleteTodo(
+            @PathVariable(name = "id") id: String
+    ): Boolean = service.deleteTodo(id)
 
     /**
      * Update item.
      * It consumes JSON, that is: request body Todo.
-     * As result it returns updated Todo.
+     * As result it returns boolean. True == success.
      */
     @PostMapping(
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun updateTodo(@RequestBody todo: Todo): Todo {
-        todo.title += " [ updated ]"
-        todo.message += " [ updated ]"
-        todo.schedule = System.currentTimeMillis()
-        return todo
-    }
+    fun updateTodo(@RequestBody todo: Todo): Boolean = service.updateTodo(todo)
 
 }
