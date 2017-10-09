@@ -43,7 +43,7 @@ dependencies {
     compile 'org.springframework:spring-aop'
     compile('org.springframework.boot:spring-boot-starter')
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile 'org.springframework.boot:spring-boot-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework:spring-web'
     compile 'org.springframework:spring-webmvc'
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
