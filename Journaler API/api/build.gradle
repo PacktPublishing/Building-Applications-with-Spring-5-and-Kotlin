@@ -24,6 +24,7 @@ apply plugin: 'io.spring.dependency-management'
 group = 'com.journaler'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
@@ -36,7 +37,6 @@ repositories {
     maven { url "https://repo.spring.io/snapshot" }
     maven { url "https://repo.spring.io/milestone" }
 }
-
 
 dependencies {
     compile 'org.springframework:spring-context'
