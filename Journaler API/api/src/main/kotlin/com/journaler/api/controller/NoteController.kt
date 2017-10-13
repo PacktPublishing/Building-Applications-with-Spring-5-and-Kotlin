@@ -43,7 +43,7 @@ class NoteController {
     )
     fun deleteNote(
             @PathVariable(name = "id") id: String
-    ): Boolean = service.deleteNote(id)
+    ) = service.deleteNote(id)
 
     /**
      * Update item.
@@ -56,6 +56,6 @@ class NoteController {
     )
     fun updateNote(
             @RequestBody note: Note
-    ): Boolean = service.updateNote(note)
+    ): Note = service.updateNote(note)
 
 }

@@ -1,35 +1,23 @@
 package com.journaler.api.service
 
 import com.journaler.api.data.Todo
+import com.journaler.api.repository.TodoRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.*
 
 
 @Service("Todo service")
 class TodoService {
 
-    fun getTodos(): List<Todo> = listOf(
-            Todo(
-                    UUID.randomUUID().toString(),
-                    "My first todo",
-                    "This is a message for the 1st todo.",
-                    System.currentTimeMillis()
-            ),
-            Todo(
-                    UUID.randomUUID().toString(),
-                    "My second todo",
-                    "This is a message for the 2nd todo.",
-                    System.currentTimeMillis()
-            )
-    )
+    @Autowired
+    lateinit var repository: TodoRepository
 
-    fun insertTodo(todo: Todo): Todo {
-        todo.id = UUID.randomUUID().toString()
-        return todo
-    }
+    fun getTodos(): Iterable<Todo> = repository.findAll()
 
-    fun deleteTodo(id: String): Boolean = false
+    fun insertTodo(todo: Todo): Todo = repository.save(todo)
 
-    fun updateTodo(todo: Todo): Boolean = true
+    fun deleteTodo(id: String) = repository.deleteById(id)
+
+    fun updateTodo(todo: Todo): Todo = repository.save(todo)
 
 }
