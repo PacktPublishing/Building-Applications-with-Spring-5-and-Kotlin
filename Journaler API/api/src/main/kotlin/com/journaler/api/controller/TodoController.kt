@@ -13,18 +13,11 @@ class TodoController {
     @Autowired
     private lateinit var service: TodoService
 
-    /**
-     * Get todos.
-     */
     @GetMapping(
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun getTodos(): Iterable<Todo> = service.getTodos()
 
-    /**
-     * Insert item.
-     * It consumes JSON, that is: request body Todo.
-     */
     @PutMapping(
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
@@ -33,10 +26,6 @@ class TodoController {
             @RequestBody todo: Todo
     ): Todo = service.insertTodo(todo)
 
-    /**
-     * Remove item by Id.
-     * We introduced path variable for Id to pass.
-     */
     @DeleteMapping(
             value = "/{id}",
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
@@ -45,11 +34,6 @@ class TodoController {
             @PathVariable(name = "id") id: String
     ) = service.deleteTodo(id)
 
-    /**
-     * Update item.
-     * It consumes JSON, that is: request body Todo.
-     * As result it returns boolean. True == success.
-     */
     @PostMapping(
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
