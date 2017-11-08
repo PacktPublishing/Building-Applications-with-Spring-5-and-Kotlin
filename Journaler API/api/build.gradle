@@ -39,6 +39,7 @@ repositories {
 }
 
 dependencies {
+    compile 'org.springframework.security:spring-security-web'
     compile 'org.springframework:spring-context'
     compile 'org.springframework:spring-aop'
     compile('org.springframework.boot:spring-boot-starter')
