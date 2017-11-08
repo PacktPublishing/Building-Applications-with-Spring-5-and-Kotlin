@@ -15,12 +15,12 @@ import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "user")
-data class User(
+open class User(
         @Id
         @GeneratedValue(generator = "uuid2")
         @GenericGenerator(name = "uuid2", strategy = "uuid2")
         @Column(columnDefinition = "varchar(36)")
-        var id: String = "",
+        var id: String,
 
         @Column(unique = true, nullable = false)
         @NotNull
@@ -48,7 +48,6 @@ data class User(
 
         @UpdateTimestamp
         var modified: Date
-
 ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
