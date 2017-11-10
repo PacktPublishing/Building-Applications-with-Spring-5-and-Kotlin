@@ -15,39 +15,39 @@ import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "user")
-open class User(
+abstract class User(
         @Id
         @GeneratedValue(generator = "uuid2")
         @GenericGenerator(name = "uuid2", strategy = "uuid2")
         @Column(columnDefinition = "varchar(36)")
-        var id: String,
+        var id: String = "",
 
         @Column(unique = true, nullable = false)
         @NotNull
         @Email
-        var email: String,
+        var email: String = "",
 
         @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
         @NotBlank
-        var pwd: String,
+        var pwd: String = "",
 
         @NotBlank
-        var firstName: String,
+        var firstName: String = "",
 
         @NotBlank
-        var lastName: String,
+        var lastName: String = "",
 
-        var roles: String,
-        var enabled: Boolean,
-        var accountNonExpired: Boolean,
-        var accountNonLocked: Boolean,
-        var credentialsNonExpired: Boolean,
+        var roles: String = "",
+        var enabled: Boolean = true,
+        var accountNonExpired: Boolean = true,
+        var accountNonLocked: Boolean = true,
+        var credentialsNonExpired: Boolean = true,
 
         @CreationTimestamp
-        var created: Date,
+        var created: Date = Date(),
 
         @UpdateTimestamp
-        var modified: Date
+        var modified: Date = Date()
 ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {

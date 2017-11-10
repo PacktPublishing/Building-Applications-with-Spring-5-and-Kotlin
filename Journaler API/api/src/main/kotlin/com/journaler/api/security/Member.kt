@@ -5,8 +5,8 @@ import javax.persistence.DiscriminatorValue
 import javax.persistence.Entity
 
 @Entity
-@DiscriminatorValue(value = "ADMIN")
-class Admin(
+@DiscriminatorValue(value = "MEMBER")
+class Member(
         id: String,
         email: String,
         pwd: String,
@@ -32,10 +32,4 @@ class Admin(
         credentialsNonExpired,
         created,
         modified
-) {
-
-    constructor() : this(
-            "", "", "", "", "", "", true, true, true, true, Date(), Date()
-    )
-
-}
+)

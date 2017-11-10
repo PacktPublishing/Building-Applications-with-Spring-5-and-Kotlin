@@ -39,17 +39,18 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.security:spring-security-web'
+    compile 'io.jsonwebtoken:jjwt:0.7.0'
+    compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework:spring-context'
     compile 'org.springframework:spring-aop'
-    compile('org.springframework.boot:spring-boot-starter')
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework:spring-web'
     compile 'org.springframework:spring-webmvc'
-    runtime('mysql:mysql-connector-java')
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
-    compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    runtime 'mysql:mysql-connector-java'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}"
+    compile "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
