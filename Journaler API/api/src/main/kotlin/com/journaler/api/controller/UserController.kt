@@ -32,6 +32,7 @@ class UserController {
             @RequestBody user: Admin
     ): User {
         user.pwd = encoder.encode(user.password)
+        user.roles = "ADMIN, MEMBER"
         return service.save(user)
     }
 
@@ -44,6 +45,7 @@ class UserController {
             @RequestBody user: Member
     ): User {
         user.pwd = encoder.encode(user.password)
+        user.roles = "MEMBER"
         return service.save(user)
     }
 
