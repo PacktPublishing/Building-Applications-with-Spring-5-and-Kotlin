@@ -18,4 +18,6 @@ class UserService : UserDetailsService {
 
     fun save(user: User): User = repository.save(user)
 
+    fun getUsers(): Iterable<User> = repository.findAll()
+
 }
