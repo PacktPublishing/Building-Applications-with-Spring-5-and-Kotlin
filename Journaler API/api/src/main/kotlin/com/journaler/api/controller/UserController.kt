@@ -1,6 +1,5 @@
 package com.journaler.api.controller
 
-import com.journaler.api.security.Admin
 import com.journaler.api.security.User
 import com.journaler.api.security.UserDTO
 import com.journaler.api.service.UserService
