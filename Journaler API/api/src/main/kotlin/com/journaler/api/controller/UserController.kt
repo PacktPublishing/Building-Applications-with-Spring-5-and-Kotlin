@@ -1,12 +1,11 @@
 package com.journaler.api.controller
 
 import com.journaler.api.security.Admin
-import com.journaler.api.security.Member
 import com.journaler.api.security.User
+import com.journaler.api.security.UserDTO
 import com.journaler.api.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -15,8 +14,6 @@ class UserController {
 
     @Autowired
     lateinit var service: UserService
-
-    val encoder = BCryptPasswordEncoder(11)
 
     @GetMapping(
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
@@ -29,12 +26,8 @@ class UserController {
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun insertAdmin(
-            @RequestBody user: Admin
-    ): User {
-        user.pwd = encoder.encode(user.password)
-        user.roles = "ADMIN, MEMBER"
-        return service.save(user)
-    }
+            @RequestBody user: UserDTO
+    ) = service.saveAdmin(user)
 
     @PutMapping(
             value = "/member",
@@ -42,12 +35,9 @@ class UserController {
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun insertMember(
-            @RequestBody user: Member
-    ): User {
-        user.pwd = encoder.encode(user.password)
-        user.roles = "MEMBER"
-        return service.save(user)
-    }
+            @RequestBody user: UserDTO
+    ) = service.saveMember(user)
+
 
     @DeleteMapping(
             value = "/{id}",

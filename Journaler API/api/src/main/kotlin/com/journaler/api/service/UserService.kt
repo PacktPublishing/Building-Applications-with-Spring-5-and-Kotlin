@@ -1,9 +1,13 @@
 package com.journaler.api.service
 
 import com.journaler.api.repository.UserRepository
+import com.journaler.api.security.Admin
+import com.journaler.api.security.Member
 import com.journaler.api.security.User
+import com.journaler.api.security.UserDTO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Repository
 import java.util.*
 
@@ -13,15 +17,31 @@ class UserService : UserDetailsService {
     @Autowired
     lateinit var repository: UserRepository
 
+    val encoder = BCryptPasswordEncoder(11)
+
     override fun loadUserByUsername(email: String): User? {
         return repository.findOneByEmail(email) ?: throw RuntimeException("User not found: $email")
     }
 
-    fun save(user: User): User = repository.save(user)
+    fun saveMember(user: UserDTO): User {
+        val member = Member()
+        member.email = user.email
+        member.firstName = user.firstName
+        member.lastName = user.lastName
+        member.pwd = encoder.encode(user.password)
+        member.roles = "MEMBER"
+        return repository.save(member)
+    }
 
-    fun getUsers(): Iterable<User> = repository.findAll()
-
-    fun deleteUser(id: String) = repository.deleteById(id)
+    fun saveAdmin(user: UserDTO): User {
+        val admin = Admin()
+        admin.email = user.email
+        admin.firstName = user.firstName
+        admin.lastName = user.lastName
+        admin.roles = "ADMIN, MEMBER"
+        admin.pwd = encoder.encode(user.password)
+        return repository.save(admin)
+    }
 
     fun updateUser(toSave: User): User? {
         val user = repository.findOneByEmail(toSave.email)
@@ -33,5 +53,9 @@ class UserService : UserDetailsService {
         }
         return null
     }
+
+    fun getUsers(): Iterable<User> = repository.findAll()
+
+    fun deleteUser(id: String) = repository.deleteById(id)
 
 }

@@ -2,6 +2,7 @@ package com.journaler.api
 
 import com.journaler.api.security.Admin
 import com.journaler.api.security.Member
+import com.journaler.api.security.UserDTO
 import com.journaler.api.service.UserService
 import org.junit.Assert
 import org.junit.Test
@@ -36,21 +37,13 @@ class SecurityInitializationTest {
                 Assert.fail("Admin is not an admin.")
             }
         } catch (e: RuntimeException) {
-            val toSave = Admin(
-                    "",
+            val toSave = UserDTO(
                     adminEmail,
                     encoder.encode(password),
                     "admin",
-                    "admin",
-                    "ADMIN, MEMBER",
-                    true,
-                    true,
-                    true,
-                    true,
-                    Date(),
-                    Date()
+                    "admin"
             )
-            val saved = userService.save(toSave)
+            val saved = userService.saveAdmin(toSave)
             println("Admin user inserted: ${saved.id}")
         }
     }
@@ -65,21 +58,13 @@ class SecurityInitializationTest {
                 Assert.fail("Member is not an member.")
             }
         } catch (e: RuntimeException) {
-            val toSave = Member(
-                    "",
+            val toSave = UserDTO(
                     memberEmail,
                     encoder.encode(password),
                     "member",
-                    "member",
-                    "MEMBER",
-                    true,
-                    true,
-                    true,
-                    true,
-                    Date(),
-                    Date()
+                    "member"
             )
-            val saved = userService.save(toSave)
+            val saved = userService.saveMember(toSave)
             println("Member user inserted: ${saved.id}")
         }
     }
