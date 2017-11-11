@@ -1,5 +1,6 @@
 package com.journaler.api.service
 
+import com.journaler.api.data.NoteDTO
 import com.journaler.api.repository.UserRepository
 import com.journaler.api.security.Admin
 import com.journaler.api.security.Member
@@ -46,6 +47,9 @@ class UserService : UserDetailsService {
     fun updateUser(toSave: User): User? {
         val user = repository.findOneByEmail(toSave.email)
         user?.let {
+            if (!toSave.pwd.isEmpty()) {
+                user.pwd = encoder.encode(toSave.password)
+            }
             user.firstName = toSave.firstName
             user.lastName = toSave.lastName
             user.modified = Date()
@@ -54,7 +58,7 @@ class UserService : UserDetailsService {
         return null
     }
 
-    fun getUsers(): Iterable<User> = repository.findAll()
+    fun getUsers() = repository.findAll().map { it -> it.pwd = "" }
 
     fun deleteUser(id: String) = repository.deleteById(id)
 
