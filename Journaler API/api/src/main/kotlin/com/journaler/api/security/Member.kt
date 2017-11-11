@@ -35,7 +35,7 @@ class Member(
 ) {
 
     /**
-     * We need empty constructor for SecurityInitializationTest.
+     * We need empty constructor for SecurityInitializationTest and Hibernate.
      */
     constructor() : this(
             "", "", "", "", "", "", true, true, true, true, Date(), Date()

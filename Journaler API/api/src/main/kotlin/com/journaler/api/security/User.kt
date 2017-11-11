@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull
 @Entity
 @Table(name = "user")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-abstract class User(
+open class User(
         @Id
         @GeneratedValue(generator = "uuid2")
         @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -51,6 +51,13 @@ abstract class User(
         @UpdateTimestamp
         var modified: Date = Date()
 ) : UserDetails {
+
+    /**
+     * We need empty constructor for SecurityInitializationTest and Hibernate.
+     */
+    constructor() : this(
+            "", "", "", "", "", "", true, true, true, true, Date(), Date()
+    )
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities = mutableListOf<GrantedAuthority>()
