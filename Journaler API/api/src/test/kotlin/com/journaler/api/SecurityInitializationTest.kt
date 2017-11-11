@@ -19,8 +19,6 @@ class SecurityInitializationTest {
     @Autowired
     private lateinit var userService: UserService
 
-    private val encoder = BCryptPasswordEncoder(11)
-
     private val password = "12345"
     private val adminEmail = "admin@example.com"
     private val memberEmail = "member@example.com"
@@ -37,7 +35,7 @@ class SecurityInitializationTest {
         } catch (e: RuntimeException) {
             val toSave = UserDTO(
                     adminEmail,
-                    encoder.encode(password),
+                    password,
                     "admin",
                     "admin"
             )
@@ -58,7 +56,7 @@ class SecurityInitializationTest {
         } catch (e: RuntimeException) {
             val toSave = UserDTO(
                     memberEmail,
-                    encoder.encode(password),
+                    password,
                     "member",
                     "member"
             )
