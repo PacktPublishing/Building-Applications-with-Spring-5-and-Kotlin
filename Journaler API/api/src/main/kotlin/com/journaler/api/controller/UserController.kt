@@ -61,6 +61,6 @@ class UserController {
     )
     fun updateUser(
             @RequestBody user: User
-    ): User = service.updateUser(user)
+    ): User? = service.updateUser(user)
 
 }
