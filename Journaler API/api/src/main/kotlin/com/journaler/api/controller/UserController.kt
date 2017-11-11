@@ -1,5 +1,8 @@
-package com.journaler.api.security
+package com.journaler.api.controller
 
+import com.journaler.api.security.Admin
+import com.journaler.api.security.Member
+import com.journaler.api.security.User
 import com.journaler.api.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
@@ -44,6 +47,20 @@ class UserController {
         return service.save(user)
     }
 
+    @DeleteMapping(
+            value = "/{id}",
+            produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
+    )
+    fun deleteUser(
+            @PathVariable(name = "id") id: String
+    ) = service.deleteUser(id)
 
+    @PostMapping(
+            produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
+            consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
+    )
+    fun updateUser(
+            @RequestBody user: User
+    ): User = service.updateUser(user)
 
 }
