@@ -34,6 +34,9 @@ class Admin(
         modified
 ) {
 
+    /**
+     * We need empty constructor for SecurityInitializationTest.
+     */
     constructor() : this(
             "", "", "", "", "", "", true, true, true, true, Date(), Date()
     )
