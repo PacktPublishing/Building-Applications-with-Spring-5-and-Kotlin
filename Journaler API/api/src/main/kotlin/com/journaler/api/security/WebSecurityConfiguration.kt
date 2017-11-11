@@ -49,10 +49,18 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
                 ?.authenticationEntryPoint(unauthorizedHandler)
                 ?.and()
                 ?.authorizeRequests()
+                /**
+                 * Access to Notes and Todos API calls is given to any authenticated system user.
+                 */
                 ?.antMatchers("/notes")?.authenticated()
                 ?.antMatchers("/notes/**")?.authenticated()
                 ?.antMatchers("/todos")?.authenticated()
                 ?.antMatchers("/todos/**")?.authenticated()
+                /**
+                 * Access to User API calls is given only to Admin user.
+                 */
+                ?.antMatchers("/users")?.hasAnyAuthority("ADMIN")
+                ?.antMatchers("/users/**")?.hasAnyAuthority("ADMIN")
                 ?.and()
                 ?.formLogin()
                 ?.successHandler(successHandler)
