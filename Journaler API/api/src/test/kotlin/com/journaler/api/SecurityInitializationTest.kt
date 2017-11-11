@@ -1,6 +1,7 @@
 package com.journaler.api
 
 import com.journaler.api.security.Admin
+import com.journaler.api.security.Member
 import com.journaler.api.service.UserService
 import org.junit.Assert
 import org.junit.Test
@@ -22,21 +23,22 @@ class SecurityInitializationTest {
     private val encoder = BCryptPasswordEncoder(11)
 
     private val password = "12345"
-    private val email = "admin@example.com"
+    private val adminEmail = "admin@example.com"
+    private val memberEmail = "member@example.com"
 
     @Test
-    fun testInitialization() {
+    fun initAdmin() {
         try {
-            val admin = userService.loadUserByUsername(email)
+            val admin = userService.loadUserByUsername(adminEmail)
             if (admin is Admin) {
                 println("Admin user exists: ${admin.id}")
             } else {
                 Assert.fail("Admin is not an admin.")
             }
-        } catch (e: RuntimeException){
+        } catch (e: RuntimeException) {
             val toSave = Admin(
                     "",
-                    email,
+                    adminEmail,
                     encoder.encode(password),
                     "admin",
                     "admin",
@@ -50,6 +52,35 @@ class SecurityInitializationTest {
             )
             val saved = userService.save(toSave)
             println("Admin user inserted: ${saved.id}")
+        }
+    }
+
+    @Test
+    fun initMember() {
+        try {
+            val member = userService.loadUserByUsername(memberEmail)
+            if (member is Member) {
+                println("Member user exists: ${member.id}")
+            } else {
+                Assert.fail("Member is not an member.")
+            }
+        } catch (e: RuntimeException) {
+            val toSave = Member(
+                    "",
+                    memberEmail,
+                    encoder.encode(password),
+                    "member",
+                    "member",
+                    "USER",
+                    true,
+                    true,
+                    true,
+                    true,
+                    Date(),
+                    Date()
+            )
+            val saved = userService.save(toSave)
+            println("Member user inserted: ${saved.id}")
         }
     }
 

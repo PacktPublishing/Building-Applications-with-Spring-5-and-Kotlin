@@ -32,4 +32,10 @@ class Member(
         credentialsNonExpired,
         created,
         modified
-)
+) {
+
+    constructor() : this(
+            "", "", "", "", "", "", true, true, true, true, Date(), Date()
+    )
+
+}
