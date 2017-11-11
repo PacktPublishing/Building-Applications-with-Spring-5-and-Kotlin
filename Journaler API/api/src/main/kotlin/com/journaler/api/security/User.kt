@@ -1,5 +1,6 @@
 package com.journaler.api.security
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.GenericGenerator
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "user")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 abstract class User(
         @Id
         @GeneratedValue(generator = "uuid2")
