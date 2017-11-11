@@ -48,6 +48,9 @@ class UserService : UserDetailsService {
             }
             user.firstName = toSave.firstName
             user.lastName = toSave.lastName
+            user.accountNonExpired = toSave.accountNonExpired
+            user.accountNonLocked = toSave.accountNonLocked
+            user.credentialsNonExpired = toSave.credentialsNonExpired
             user.modified = Date()
             return repository.save(user)
         }
