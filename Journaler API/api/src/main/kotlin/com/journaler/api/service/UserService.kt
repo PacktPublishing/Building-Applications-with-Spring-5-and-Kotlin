@@ -1,11 +1,7 @@
 package com.journaler.api.service
 
-import com.journaler.api.data.NoteDTO
 import com.journaler.api.repository.UserRepository
-import com.journaler.api.security.Admin
-import com.journaler.api.security.Member
-import com.journaler.api.security.User
-import com.journaler.api.security.UserDTO
+import com.journaler.api.security.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -58,7 +54,21 @@ class UserService : UserDetailsService {
         return null
     }
 
-    fun getUsers() = repository.findAll().map { it -> it.pwd = "" }
+    fun getUsers() = repository.findAll().map { it ->
+        UserDetailsDTO(
+                it.id,
+                it.email,
+                it.firstName,
+                it.lastName,
+                it.roles,
+                it.enabled,
+                it.accountNonExpired,
+                it.accountNonLocked,
+                it.credentialsNonExpired,
+                it.created,
+                it.modified
+        )
+    }
 
     fun deleteUser(id: String) = repository.deleteById(id)
 
