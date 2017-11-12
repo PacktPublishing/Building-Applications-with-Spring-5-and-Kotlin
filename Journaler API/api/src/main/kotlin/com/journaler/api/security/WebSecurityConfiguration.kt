@@ -89,5 +89,4 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
         )
         return UnanimousBased(decisionVoters)
     }
-
 }
