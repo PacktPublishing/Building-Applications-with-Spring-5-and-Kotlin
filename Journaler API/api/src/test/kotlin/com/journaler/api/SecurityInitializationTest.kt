@@ -63,5 +63,4 @@ class SecurityInitializationTest {
             println("Member user inserted: ${saved.id}")
         }
     }
-
 }
