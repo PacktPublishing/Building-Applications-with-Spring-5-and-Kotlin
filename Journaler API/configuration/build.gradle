@@ -45,6 +45,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.cloud:spring-cloud-config-server'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
     compile 'org.springframework:spring-web'
     compile 'org.springframework:spring-webmvc'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}"
@@ -54,6 +55,6 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.M4"
+        mavenBom "org.springframework.cloud:spring-cloud-netflix:1.4.1.BUILD-SNAPSHOT"
     }
 }
