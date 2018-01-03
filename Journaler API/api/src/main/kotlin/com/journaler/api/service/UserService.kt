@@ -73,6 +73,6 @@ class UserService : UserDetailsService {
         )
     }
 
-    fun deleteUser(id: String) = repository.deleteById(id)
+    fun deleteUser(id: String) = repository.delete(id)
 
 }

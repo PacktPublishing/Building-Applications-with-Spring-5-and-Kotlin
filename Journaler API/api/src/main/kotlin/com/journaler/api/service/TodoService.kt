@@ -28,10 +28,10 @@ class TodoService {
             )
     )
 
-    fun deleteTodo(id: String) = repository.deleteById(id)
+    fun deleteTodo(id: String) = repository.delete(id)
 
     fun updateTodo(todoDto: TodoDTO): TodoDTO {
-        var todo = repository.findById(todoDto.id).get()
+        var todo = repository.findOne(todoDto.id)
         todo.title = todoDto.title
         todo.message = todoDto.message
         todo.location = todoDto.location
