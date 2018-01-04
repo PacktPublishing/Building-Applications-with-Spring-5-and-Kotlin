@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 class SessionFilter : ZuulFilter() {
 
     @Autowired
-    private val repository: SessionRepository<*>? = null
+    lateinit var repository: SessionRepository<*>
 
     override fun shouldFilter(): Boolean {
         return true
@@ -19,9 +19,10 @@ class SessionFilter : ZuulFilter() {
     override fun run(): Any? {
         val context = RequestContext.getCurrentContext()
         val httpSession = context.request.session
-        val session = repository?.getSession(httpSession.id)
+        val session = repository.getSession(httpSession.id)
         context.addZuulRequestHeader("Cookie", "SESSION=" + httpSession.id)
-        return session
+        println("Session ID available: ${session.id}")
+        return null
     }
 
     override fun filterType(): String {
