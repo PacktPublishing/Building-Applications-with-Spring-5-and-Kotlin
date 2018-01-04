@@ -21,7 +21,7 @@ class SessionFilter : ZuulFilter() {
         val httpSession = context.request.session
         val session = repository?.getSession(httpSession.id)
         context.addZuulRequestHeader("Cookie", "SESSION=" + httpSession.id)
-        return null
+        return session
     }
 
     override fun filterType(): String {
