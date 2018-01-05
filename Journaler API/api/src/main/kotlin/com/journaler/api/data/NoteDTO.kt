@@ -8,6 +8,8 @@ data class NoteDTO(
         var location: String = ""
 ) {
 
+    constructor() : this("", "", "")
+
     var id: String = ""
     var created: Date = Date()
     var modified: Date = Date()

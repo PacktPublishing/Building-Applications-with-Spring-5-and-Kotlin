@@ -24,4 +24,6 @@ data class TodoDTO(
         modified = todo.modified
     }
 
+    constructor() : this("", "", -1, "")
+
 }
