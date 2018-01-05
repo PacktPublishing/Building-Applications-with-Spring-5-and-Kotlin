@@ -14,10 +14,10 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http
                 .httpBasic().disable().authorizeRequests()
-                .antMatchers("/notes").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/notes/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/todos").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/todos/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/notes").permitAll()
+                .antMatchers("/notes/**").permitAll()
+                .antMatchers("/todos").permitAll()
+                .antMatchers("/todos/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
