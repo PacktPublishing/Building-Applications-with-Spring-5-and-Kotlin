@@ -52,6 +52,7 @@ dependencies {
     compile 'org.springframework:spring-web'
     compile 'org.springframework:spring-webmvc'
     compile 'io.projectreactor:reactor-bus:2.0.8.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-mail'
     runtime 'mysql:mysql-connector-java'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}"
