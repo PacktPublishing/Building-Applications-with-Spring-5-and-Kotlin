@@ -1,4 +1,4 @@
-package com.journaler.api.service.reactor
+package com.journaler.api.reactor
 
 interface NotificationService<in T> {
 

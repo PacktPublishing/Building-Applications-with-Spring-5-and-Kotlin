@@ -1,6 +1,5 @@
 package com.journaler.api.reactor
 
-import com.journaler.api.service.reactor.NotesCountNotificationService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.bus.Event
@@ -9,7 +8,7 @@ import reactor.bus.Event
 class NotesCountNotificationConsumer : NotificationConsumer<NotesCountNotification> {
 
     @Autowired
-    private lateinit var service: NotesCountNotificationService
+    private lateinit var service: NotesCountNotificationServiceImpl
 
     override fun accept(e: Event<NotesCountNotification>?) {
         val data = e?.data
