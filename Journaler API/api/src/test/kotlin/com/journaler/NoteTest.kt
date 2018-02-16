@@ -6,32 +6,38 @@ import org.junit.Test
 
 class NoteTest {
     @Before
-    fun prepare(){
+    fun prepare() {
+        println("Prepare.")
         // Prepare environment and requirements for tests to be performed.
     }
 
     @Test
-    fun insert(){
+    fun insert() {
+        println("Insert.")
         // Test insert operation for Note entity.
     }
 
     @Test
-    fun update(){
+    fun update() {
+        println("Update.")
         // Test update operation for Note entity.
     }
 
     @Test
-    fun delete(){
+    fun delete() {
+        println("Delete.")
         // Test delete operation for Note entity.
     }
 
     @Test
-    fun select(){
+    fun select() {
+        println("Select.")
         // Test select operation for Note entity.
     }
 
     @After
-    fun cleanup(){
+    fun cleanup() {
+        println("Prepare.")
         // Do cleanup after all tests are performed.
     }
 }
