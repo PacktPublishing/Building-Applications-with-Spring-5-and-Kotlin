@@ -4,18 +4,18 @@ import org.junit.Test
 
 class NoteTest {
     @Test
-    fun noteInsert(){
+    fun insert(){
     }
 
     @Test
-    fun noteUpdate(){
+    fun update(){
     }
 
     @Test
-    fun noteDelete(){
+    fun delete(){
     }
 
     @Test
-    fun noteSelect(){
+    fun select(){
     }
 }
