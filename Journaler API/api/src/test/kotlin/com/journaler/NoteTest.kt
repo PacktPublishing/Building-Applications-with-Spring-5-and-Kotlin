@@ -37,7 +37,7 @@ class NoteTest {
 
     @After
     fun cleanup() {
-        println("Prepare.")
+        println("Cleanup.")
         // Do cleanup after all tests are performed.
     }
 }
