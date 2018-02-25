@@ -10,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.21")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
     }
 }
@@ -55,7 +55,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-mail'
     runtime 'mysql:mysql-connector-java'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.21"
     compile "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
