@@ -1,14 +1,36 @@
 package com.journaler
 
+import com.journaler.api.ApiApplication
+import com.journaler.api.data.NoteDTO
+import com.journaler.api.service.NoteService
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.junit4.SpringRunner
 
+@RunWith(SpringRunner::class)
+@SpringBootTest(classes = [ApiApplication::class])
 class NoteTest {
+
+    @Autowired
+    private lateinit var service: NoteService
+
+    private val notes = mutableListOf<NoteDTO>()
+
     @Before
     fun prepare() {
         println("Prepare.")
-        // Prepare environment and requirements for tests to be performed.
+        Assert.assertNotNull(service)
+        (0..10).mapTo(notes) {
+            NoteDTO(
+                    "Stub note title: $it",
+                    "Stub note message: $it"
+            )
+        }
     }
 
     @Test
@@ -28,7 +50,12 @@ class NoteTest {
 
     fun insert() {
         println("Insert.")
-        // Test insert operation for Note entity.
+        notes.forEach { note ->
+            val result = service.insertNote(note)
+            Assert.assertNotNull(result)
+            Assert.assertNotNull(result.id)
+            Assert.assertFalse(result.id.isEmpty())
+        }
     }
 
     fun update() {
@@ -38,7 +65,9 @@ class NoteTest {
 
     fun delete() {
         println("Delete.")
-        // Test delete operation for Note entity.
+        notes.forEach { note ->
+            service.deleteNote(note.id)
+        }
     }
 
     fun select() {
