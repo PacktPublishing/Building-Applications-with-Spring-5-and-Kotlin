@@ -1,7 +1,7 @@
 buildscript {
     ext {
         kotlinVersion = '1.2.21'
-        springBootVersion = '2.0.0.M6'
+        springBootVersion = '2.0.0.M4'
     }
     repositories {
         mavenCentral()
@@ -40,28 +40,16 @@ repositories {
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-security'
-    compile 'org.springframework.session:spring-session'
-    compile 'org.springframework.boot:spring-boot-starter-data-redis'
     compile 'org.springframework:spring-context'
     compile 'org.springframework:spring-aop'
     compile 'org.springframework.boot:spring-boot-starter'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
-    compile 'org.springframework.cloud:spring-cloud-starter-config'
-    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
     compile 'org.springframework:spring-web'
     compile 'org.springframework:spring-webmvc'
-    compile 'io.projectreactor:reactor-bus:2.0.8.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-mail'
     runtime 'mysql:mysql-connector-java'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     compile "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
     testCompile 'org.springframework.boot:spring-boot-starter-test'
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-netflix:1.4.1.BUILD-SNAPSHOT"
-    }
 }
