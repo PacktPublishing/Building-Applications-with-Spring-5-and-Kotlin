@@ -55,6 +55,7 @@ class NoteTest {
             Assert.assertNotNull(result)
             Assert.assertNotNull(result.id)
             Assert.assertFalse(result.id.isEmpty())
+            note.id = result.id
         }
     }
 
@@ -66,6 +67,7 @@ class NoteTest {
     fun delete() {
         println("Delete.")
         notes.forEach { note ->
+            println("Removing note with id: ${note.id}")
             service.deleteNote(note.id)
         }
     }
