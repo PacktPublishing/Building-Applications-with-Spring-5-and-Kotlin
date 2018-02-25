@@ -23,8 +23,8 @@ class NoteTest {
 
     @Before
     fun prepare() {
-        println("Prepare.")
         Assert.assertNotNull(service)
+        // We will prepare 10 Note instances to be inserted:
         (0..10).mapTo(notes) {
             NoteDTO(
                     "Stub note title: $it",
@@ -36,20 +36,20 @@ class NoteTest {
     @Test
     fun crud() {
         // Test Note entity CRUD operations.
-        insert()
-        update()
-        delete()
-        select()
+        cleanup()   // We will empty database before run test.
+        insert()    // We will insert all prepared Note instances into database.
+        update()    // We will update each Note.
+        select()    // We will verify that saved Note instances are valid.
+        delete()    // We will remove all Note instances from database.
     }
 
-    @After
     fun cleanup() {
-        println("Cleanup.")
-        // Do cleanup after all tests are performed.
+        service.getNotes().forEach { note ->
+            service.deleteNote(note.id)
+        }
     }
 
     fun insert() {
-        println("Insert.")
         notes.forEach { note ->
             val result = service.insertNote(note)
             Assert.assertNotNull(result)
@@ -60,12 +60,19 @@ class NoteTest {
     }
 
     fun update() {
-        println("Update.")
-        // Test update operation for Note entity.
+        notes.forEach { note ->
+            note.title = "updated"
+            note.message = "updated"
+            val result = service.updateNote(note)
+            Assert.assertNotNull(result)
+            Assert.assertNotNull(result.id)
+            Assert.assertFalse(result.id.isEmpty())
+            Assert.assertEquals("updated", result.title)
+            Assert.assertEquals("updated", result.message)
+        }
     }
 
     fun delete() {
-        println("Delete.")
         notes.forEach { note ->
             println("Removing note with id: ${note.id}")
             service.deleteNote(note.id)
@@ -73,7 +80,13 @@ class NoteTest {
     }
 
     fun select() {
-        println("Select.")
-        // Test select operation for Note entity.
+        val result = service.getNotes()
+        result.forEach { note ->
+            Assert.assertNotNull(note)
+            Assert.assertNotNull(note.id)
+            Assert.assertFalse(note.id.isEmpty())
+            Assert.assertEquals("updated", note.title)
+            Assert.assertEquals("updated", note.message)
+        }
     }
 }

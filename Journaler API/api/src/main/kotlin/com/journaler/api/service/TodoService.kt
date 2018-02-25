@@ -31,14 +31,13 @@ class TodoService {
     fun deleteTodo(id: String) = repository.deleteById(id)
 
     fun updateTodo(todoDto: TodoDTO): TodoDTO {
-        var todo = repository.findById(todoDto.id).get()
+        val todo = repository.findById(todoDto.id).get()
         todo.title = todoDto.title
         todo.message = todoDto.message
         todo.location = todoDto.location
         todo.schedule = todoDto.schedule
         todo.modified = Date()
-        todo = repository.save(todo)
-        return TodoDTO(todo)
+        return TodoDTO(repository.save(todo))
     }
 
     fun getScheduledLaterThan(date: Date?): Iterable<TodoDTO> {
