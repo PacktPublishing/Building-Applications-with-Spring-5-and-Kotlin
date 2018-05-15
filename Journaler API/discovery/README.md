@@ -1,1 +1,0 @@
-# Journaler Discovery Server
