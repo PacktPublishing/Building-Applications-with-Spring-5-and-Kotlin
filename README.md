@@ -33,6 +33,3 @@ Also, as always, code as much as you can!
 * [Hands-On Full-Stack Web Development with Angular 6 and Laravel 5](https://www.packtpub.com/web-development/hands-full-stack-web-development-angular-6-and-laravel-5?utm_source=github&utm_medium=repository&utm_campaign=9781788833912)
 
 * [Hands-On Design Patterns with C# and .NET Core](https://www.packtpub.com/application-development/hands-design-patterns-c-and-net-core?utm_source=github&utm_medium=repository&utm_campaign=9781789133646)
-
-### Suggestions and Feedback
-[Click here](https://docs.google.com/forms/d/e/1FAIpQLSe5qwunkGf6PUvzPirPDtuy1Du5Rlzew23UBp2S-P3wB-GcwQ/viewform) if you have any feedback or suggestions.
